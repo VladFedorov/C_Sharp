@@ -10,7 +10,12 @@ namespace GIT_Sharp
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            int n;
+            Console.WriteLine("Enter a number:");
+            n = Convert.ToInt32(Console.ReadLine());
+            n = Convert.ToInt32(Math.Pow(n,3));
+            Console.WriteLine("Result: " + n);
+            Console.ReadKey(true);
         }
     }
 }
