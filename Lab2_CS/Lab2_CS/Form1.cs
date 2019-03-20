@@ -23,14 +23,12 @@ namespace Lab2_CS
             Triangle triangle = new Triangle();
             Triangle.RightTriangle rightTriangle = new Triangle.RightTriangle();
 
-            triangle.Input();
             triangle.CoordA[0] = Convert.ToInt32(textBox1.Text);
             triangle.CoordA[1] = Convert.ToInt32(textBox2.Text);
             triangle.CoordB[0] = Convert.ToInt32(textBox4.Text);
             triangle.CoordB[1] = Convert.ToInt32(textBox3.Text);
             triangle.CoordC[0] = Convert.ToInt32(textBox5.Text);
             triangle.CoordC[1] = Convert.ToInt32(textBox6.Text);
-            rightTriangle.Input();
             rightTriangle.CoordA[0] = Convert.ToInt32(textBox1.Text);
             rightTriangle.CoordA[1] = Convert.ToInt32(textBox2.Text);
             rightTriangle.CoordB[0] = Convert.ToInt32(textBox4.Text);
@@ -38,15 +36,13 @@ namespace Lab2_CS
             rightTriangle.CoordC[0] = Convert.ToInt32(textBox5.Text);
             rightTriangle.CoordC[1] = Convert.ToInt32(textBox6.Text);
 
-            //https://metanit.com/sharp/windowsforms/4.19.php
+            richTextBox1.Text = triangle.Check();
 
-            //rightTriangle.Input();
-            triangle.Check();
-            //rightTriangle.Check();
-            triangle.Output();
-            //rightTriangle.Output();
-            richTextBox1.Text = triangle.Output();
-            triangle.CoordA[0] = Convert.ToInt32(textBox1.Text);
+            //https://metanit.com/sharp/windowsforms/4.19.php
+            if (triangle.Check() != "This triangle is impossible\n")
+            {
+                richTextBox1.Text =triangle.Check() + rightTriangle.Check() + triangle.Output();
+            }
         }
     }
 }
