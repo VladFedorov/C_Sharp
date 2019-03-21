@@ -10,18 +10,23 @@ using System.Windows.Forms;
 
 namespace Lab2_CS
 {
+    
     public partial class Form1 : Form
     {
+        public double tmp =0,tpm =0;
+        int n =0;
+        Triangle triangle = new Triangle();
+        Triangle.RightTriangle rightTriangle = new Triangle.RightTriangle();
         public Form1()
         {
+            
             InitializeComponent();
-
+ 
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Triangle triangle = new Triangle();
-            Triangle.RightTriangle rightTriangle = new Triangle.RightTriangle();
+           
 
             triangle.CoordA[0] = Convert.ToInt32(textBox1.Text);
             triangle.CoordA[1] = Convert.ToInt32(textBox2.Text);
@@ -29,20 +34,79 @@ namespace Lab2_CS
             triangle.CoordB[1] = Convert.ToInt32(textBox3.Text);
             triangle.CoordC[0] = Convert.ToInt32(textBox5.Text);
             triangle.CoordC[1] = Convert.ToInt32(textBox6.Text);
-            rightTriangle.CoordA[0] = Convert.ToInt32(textBox1.Text);
-            rightTriangle.CoordA[1] = Convert.ToInt32(textBox2.Text);
-            rightTriangle.CoordB[0] = Convert.ToInt32(textBox4.Text);
-            rightTriangle.CoordB[1] = Convert.ToInt32(textBox3.Text);
-            rightTriangle.CoordC[0] = Convert.ToInt32(textBox5.Text);
-            rightTriangle.CoordC[1] = Convert.ToInt32(textBox6.Text);
 
             richTextBox1.Text = triangle.Check();
 
-            //https://metanit.com/sharp/windowsforms/4.19.php
+            rightTriangle.CoordA = triangle.CoordA;
+            rightTriangle.CoordB = triangle.CoordB;
+            rightTriangle.CoordC = triangle.CoordC;
+            rightTriangle.Check();
+
             if (triangle.Check() != "This triangle is impossible\n")
             {
-                richTextBox1.Text =triangle.Check() + rightTriangle.Check() + triangle.Output();
+                if(rightTriangle.Check() == "This triangle is right")
+                {
+                  dataGridView1.Rows.Add("Right triangle", textBox1.Text + "," + textBox2.Text, textBox4.Text + "," + textBox3.Text, textBox5.Text + "," + textBox6.Text,rightTriangle.Area, rightTriangle.StringA, rightTriangle.StringB, rightTriangle.StringC);
+                  richTextBox1.Text =rightTriangle.Output();
+                    n++;
+                }
+                dataGridView1.Rows.Add("Triangle", textBox1.Text + "," + textBox2.Text, textBox4.Text + "," + textBox3.Text, textBox5.Text + "," + textBox6.Text, triangle.Area, triangle.StringA, triangle.StringB, triangle.StringC);
+                richTextBox1.Text = triangle.Output();
             }
+            tmp = triangle.Area;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < dataGridView1.RowCount; i++)
+            {
+                if (tmp > Convert.ToDouble(dataGridView1.Rows[i].Cells[4].Value))
+                {
+                    tmp = Convert.ToDouble(dataGridView1.Rows[i].Cells[4].Value);
+                }
+                if (tpm < Convert.ToDouble(dataGridView1.Rows[i].Cells[4].Value))
+                {
+                    tpm = Convert.ToDouble(dataGridView1.Rows[i].Cells[4].Value);
+                }
+            }
+            int[] same = new int[n];
+            for (int i = 0; i < dataGridView1.RowCount; i++)
+            {
+                if ((Convert.ToString(dataGridView1.Rows[i].Cells[0].Value) == "Right Triangle"))
+                {
+                    if (Convert.ToDouble(dataGridView1.Rows[i].Cells[5].Value) == Convert.ToDouble(dataGridView1.Rows[i].Cells[6].Value))
+                    {
+                        if (Convert.ToDouble(dataGridView1.Rows[i].Cells[6].Value) == Convert.ToDouble(dataGridView1.Rows[i].Cells[7].Value))
+                            same[i] = i;
+                    }
+                    else
+                    {
+                        same[i] = 100;
+                    }
+                }
+            }
+
+            for (int j = 0; j < n; j++)
+            {
+                for (int i = 0; i < n; i++)
+                {
+                    if (same[i] == 100)
+                    {
+                        same[i] = same[i + 1];
+                    }
+                }
+            }
+            richTextBox1.Text = "Max Area =" + tmp + "\n" + "Min Area =" + tmp + "\n";
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void dataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

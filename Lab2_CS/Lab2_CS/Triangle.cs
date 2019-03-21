@@ -14,7 +14,9 @@ namespace Lab2_CS
 
             public double StringB;
 
-        public double StringC;
+            public double StringC;
+
+            public double Area;
 
             public virtual string Check()
             {
@@ -32,10 +34,18 @@ namespace Lab2_CS
               }
             public string Output()
             {
-            return ("Length of string A = " + StringA + "\nLength of string B = " + StringB + "\nLength of string C = " + StringC + "\nA Angle’s value = " + (Math.Acos((StringB * StringB + StringC * StringC - StringA * StringA) / (2 * StringB * StringC)) * 180 / Math.PI) + " degrees" + "\nB Angle’s value = " + (Math.Acos((StringA * StringA + StringC * StringC - StringB * StringB) / (2 * StringA * StringC)) * 180 / Math.PI) + " degrees" + "\nC Angle’s value = " + ((Math.Acos((StringB * StringB + StringA * StringA - StringC * StringC) / (2 * StringB * StringA)) * 180) / Math.PI) + " degrees" + "\nPerimeter of triangle = " + (StringA + StringB + StringC) + "\nArea of triangle = " + (StringA * StringB * StringC));
-        }
+            Area = (StringA * StringB * StringC);
+            return ("Length of string A = " + StringA +
+                "\nLength of string B = " + StringB +
+                "\nLength of string C = " + StringC +
+                "\nA Angle’s value = " + (Math.Acos((StringB * StringB + StringC * StringC - StringA * StringA) / (2 * StringB * StringC)) * 180 / Math.PI) + " degrees" +
+                "\nB Angle’s value = " + (Math.Acos((StringA * StringA + StringC * StringC - StringB * StringB) / (2 * StringA * StringC)) * 180 / Math.PI) + " degrees" + 
+                "\nC Angle’s value = " + ((Math.Acos((StringB * StringB + StringA * StringA - StringC * StringC) / (2 * StringB * StringA)) * 180) / Math.PI) + " degrees" + 
+                "\nPerimeter of triangle = " + (StringA + StringB + StringC) +
+                "\nArea of triangle = " + Area);
+             }
         public class RightTriangle : Triangle
-            {
+       {
                 public override string Check()
                 {
                     base.Check();
@@ -43,8 +53,8 @@ namespace Lab2_CS
                     {
                         return ("This triangle is right");
                     }
-                return "";
+                 return "";
                 }
-            }
+        }
     }
 }

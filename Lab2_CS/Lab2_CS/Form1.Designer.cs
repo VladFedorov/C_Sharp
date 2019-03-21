@@ -45,6 +45,17 @@
             this.label9 = new System.Windows.Forms.Label();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.Type = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.A = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.B = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.C = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Area = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.StringA = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.StringB = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.StringC = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // textBox1
@@ -181,19 +192,99 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(111, 160);
+            this.button1.Location = new System.Drawing.Point(70, 156);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 3;
-            this.button1.Text = "Calculate";
+            this.button1.Text = "Add ";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(172, 156);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 4;
+            this.button2.Text = "Calculate";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Type,
+            this.A,
+            this.B,
+            this.C,
+            this.Area,
+            this.StringA,
+            this.StringB,
+            this.StringC});
+            this.dataGridView1.Location = new System.Drawing.Point(268, 12);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(240, 343);
+            this.dataGridView1.TabIndex = 5;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick_1);
+            // 
+            // Type
+            // 
+            this.Type.HeaderText = "Type";
+            this.Type.MaxInputLength = 15;
+            this.Type.Name = "Type";
+            this.Type.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Type.Width = 77;
+            // 
+            // A
+            // 
+            this.A.HeaderText = "A(x;y)";
+            this.A.Name = "A";
+            this.A.Width = 40;
+            // 
+            // B
+            // 
+            this.B.HeaderText = "B(x;y)";
+            this.B.Name = "B";
+            this.B.Width = 40;
+            // 
+            // C
+            // 
+            this.C.HeaderText = "C(x;y)";
+            this.C.Name = "C";
+            this.C.Width = 40;
+            // 
+            // Area
+            // 
+            this.Area.HeaderText = "Area";
+            this.Area.Name = "Area";
+            this.Area.Visible = false;
+            // 
+            // StringA
+            // 
+            this.StringA.HeaderText = "StringA";
+            this.StringA.Name = "StringA";
+            this.StringA.Visible = false;
+            // 
+            // StringB
+            // 
+            this.StringB.HeaderText = "StringB";
+            this.StringB.Name = "StringB";
+            this.StringB.Visible = false;
+            // 
+            // StringC
+            // 
+            this.StringC.HeaderText = "StringC";
+            this.StringC.Name = "StringC";
+            this.StringC.Visible = false;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(574, 450);
+            this.ClientSize = new System.Drawing.Size(515, 359);
+            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.label6);
@@ -213,6 +304,7 @@
             this.Controls.Add(this.textBox1);
             this.Name = "Form1";
             this.Text = "Form1";
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -237,6 +329,16 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Type;
+        private System.Windows.Forms.DataGridViewTextBoxColumn A;
+        private System.Windows.Forms.DataGridViewTextBoxColumn B;
+        private System.Windows.Forms.DataGridViewTextBoxColumn C;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Area;
+        private System.Windows.Forms.DataGridViewTextBoxColumn StringA;
+        private System.Windows.Forms.DataGridViewTextBoxColumn StringB;
+        private System.Windows.Forms.DataGridViewTextBoxColumn StringC;
     }
 }
 
