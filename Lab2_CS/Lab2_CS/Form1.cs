@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -16,7 +16,7 @@ namespace Lab2_CS
         public double tmp =0,tpm =0;
         int n =0;
         Triangle triangle = new Triangle();
-        Triangle.RightTriangle rightTriangle = new Triangle.RightTriangle();
+        RightTriangle rightTriangle = new RightTriangle();
         public Form1()
         {
             
@@ -35,23 +35,23 @@ namespace Lab2_CS
             triangle.CoordC[0] = Convert.ToInt32(textBox5.Text);
             triangle.CoordC[1] = Convert.ToInt32(textBox6.Text);
 
-            richTextBox1.Text = triangle.Check();
+            richTextBox1.Text = $" is {(triangle.IsTriangle() ? "" : "NOT ")}a triangle" ;
 
             rightTriangle.CoordA = triangle.CoordA;
             rightTriangle.CoordB = triangle.CoordB;
             rightTriangle.CoordC = triangle.CoordC;
-            rightTriangle.Check();
+            
 
-            if (triangle.Check() != "This triangle is impossible\n")
+            if (rightTriangle.IsTriangle())
             {
-                if(rightTriangle.Check() == "This triangle is right")
+                if(rightTriangle.IsRightTriangle())
                 {
-                  dataGridView1.Rows.Add("Right triangle", textBox1.Text + "," + textBox2.Text, textBox4.Text + "," + textBox3.Text, textBox5.Text + "," + textBox6.Text,rightTriangle.Area, rightTriangle.StringA, rightTriangle.StringB, rightTriangle.StringC);
-                  richTextBox1.Text =rightTriangle.Output();
-                    n++;
+                  dataGridView1.Rows.Add("Right triangle", textBox1.Text + ", " + textBox2.Text, textBox4.Text + ", " + textBox3.Text, textBox5.Text + "," + textBox6.Text,rightTriangle.Area, rightTriangle.StringA, rightTriangle.StringB, rightTriangle.StringC);
+                  richTextBox1.Text = rightTriangle.ToString();
+                  n++;
                 }
                 dataGridView1.Rows.Add("Triangle", textBox1.Text + "," + textBox2.Text, textBox4.Text + "," + textBox3.Text, textBox5.Text + "," + textBox6.Text, triangle.Area, triangle.StringA, triangle.StringB, triangle.StringC);
-                richTextBox1.Text = triangle.Output();
+                richTextBox1.Text = triangle.ToString();
             }
             tmp = triangle.Area;
         }
