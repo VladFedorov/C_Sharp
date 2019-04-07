@@ -40,31 +40,38 @@ namespace Lab2_CS
             rightTriangle.CoordA = triangle.CoordA;
             rightTriangle.CoordB = triangle.CoordB;
             rightTriangle.CoordC = triangle.CoordC;
-            
 
-            if (rightTriangle.IsTriangle())
+
+           triangle.CalculateArea();
+
+            if (triangle.IsTriangle())
             {
-                if(rightTriangle.IsRightTriangle())
+                if (rightTriangle.IsRightTriangle())
                 {
-                  dataGridView1.Rows.Add("Right triangle", textBox1.Text + ", " + textBox2.Text, textBox4.Text + ", " + textBox3.Text, textBox5.Text + "," + textBox6.Text,rightTriangle.Area, rightTriangle.StringA, rightTriangle.StringB, rightTriangle.StringC);
-                  richTextBox1.Text = rightTriangle.ToString();
-                  n++;
+                    richTextBox1.Text = rightTriangle.ToString();
+                    n++;
+                    dataGridView1.Rows.Add("Right triangle", textBox1.Text + ", " + textBox2.Text, textBox4.Text + ", " + textBox3.Text, textBox5.Text + "," + textBox6.Text, rightTriangle.Area, rightTriangle.StringA, rightTriangle.StringB, rightTriangle.StringC);
+
                 }
-                dataGridView1.Rows.Add("Triangle", textBox1.Text + "," + textBox2.Text, textBox4.Text + "," + textBox3.Text, textBox5.Text + "," + textBox6.Text, triangle.Area, triangle.StringA, triangle.StringB, triangle.StringC);
-                richTextBox1.Text = triangle.ToString();
+                else
+                {
+                    richTextBox1.Text = triangle.ToString();
+                    dataGridView1.Rows.Add("Triangle", textBox1.Text + "," + textBox2.Text, textBox4.Text + "," + textBox3.Text, textBox5.Text + "," + textBox6.Text, triangle.Area, triangle.StringA, triangle.StringB, triangle.StringC);
+                }
             }
             tmp = triangle.Area;
+            tpm = triangle.Area;
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < dataGridView1.RowCount; i++)
+            for (int i = 0; i < (dataGridView1.RowCount-1); i++)
             {
-                if (tmp > Convert.ToDouble(dataGridView1.Rows[i].Cells[4].Value))
+                if (tmp < Convert.ToDouble(dataGridView1.Rows[i].Cells[4].Value))
                 {
                     tmp = Convert.ToDouble(dataGridView1.Rows[i].Cells[4].Value);
                 }
-                if (tpm < Convert.ToDouble(dataGridView1.Rows[i].Cells[4].Value))
+                if (tpm > Convert.ToDouble(dataGridView1.Rows[i].Cells[4].Value))
                 {
                     tpm = Convert.ToDouble(dataGridView1.Rows[i].Cells[4].Value);
                 }
@@ -96,17 +103,7 @@ namespace Lab2_CS
                     }
                 }
             }
-            richTextBox1.Text = "Max Area =" + tmp + "\n" + "Min Area =" + tmp + "\n";
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void dataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
-        {
-
+            richTextBox1.Text = "Max Area =" + tmp + "\n" + "Min Area =" + tpm + "\n";
         }
     }
 }
