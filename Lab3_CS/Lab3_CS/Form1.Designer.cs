@@ -140,6 +140,7 @@
             this.Controls.Add(this.domainUpDown4);
             this.Controls.Add(this.domainUpDown2);
             this.Controls.Add(this.domainUpDown1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);

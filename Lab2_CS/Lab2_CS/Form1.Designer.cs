@@ -176,6 +176,7 @@
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Type,
@@ -188,6 +189,7 @@
             this.StringC});
             this.dataGridView1.Location = new System.Drawing.Point(268, 12);
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
             this.dataGridView1.Size = new System.Drawing.Size(240, 343);
             this.dataGridView1.TabIndex = 10;
             // 
@@ -196,6 +198,7 @@
             this.Type.HeaderText = "Type";
             this.Type.MaxInputLength = 15;
             this.Type.Name = "Type";
+            this.Type.ReadOnly = true;
             this.Type.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.Type.Width = 77;
             // 
@@ -203,42 +206,49 @@
             // 
             this.A.HeaderText = "A(x;y)";
             this.A.Name = "A";
+            this.A.ReadOnly = true;
             this.A.Width = 40;
             // 
             // B
             // 
             this.B.HeaderText = "B(x;y)";
             this.B.Name = "B";
+            this.B.ReadOnly = true;
             this.B.Width = 40;
             // 
             // C
             // 
             this.C.HeaderText = "C(x;y)";
             this.C.Name = "C";
+            this.C.ReadOnly = true;
             this.C.Width = 40;
             // 
             // Area
             // 
             this.Area.HeaderText = "Area";
             this.Area.Name = "Area";
+            this.Area.ReadOnly = true;
             this.Area.Visible = false;
             // 
             // StringA
             // 
             this.StringA.HeaderText = "StringA";
             this.StringA.Name = "StringA";
+            this.StringA.ReadOnly = true;
             this.StringA.Visible = false;
             // 
             // StringB
             // 
             this.StringB.HeaderText = "StringB";
             this.StringB.Name = "StringB";
+            this.StringB.ReadOnly = true;
             this.StringB.Visible = false;
             // 
             // StringC
             // 
             this.StringC.HeaderText = "StringC";
             this.StringC.Name = "StringC";
+            this.StringC.ReadOnly = true;
             this.StringC.Visible = false;
             // 
             // textBox1
