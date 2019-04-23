@@ -9,6 +9,7 @@ namespace Lab2_CS
 {
     static class Program
     {
+        [STAThread]
         static void Main()
         {
             Application.EnableVisualStyles();
