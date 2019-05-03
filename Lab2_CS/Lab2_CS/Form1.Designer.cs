@@ -194,7 +194,6 @@
             this.StringC});
             this.dataGridView1.Location = new System.Drawing.Point(268, 12);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
             this.dataGridView1.Size = new System.Drawing.Size(240, 343);
             this.dataGridView1.TabIndex = 10;
             // 
@@ -203,7 +202,6 @@
             this.Type.HeaderText = "Type";
             this.Type.MaxInputLength = 15;
             this.Type.Name = "Type";
-            this.Type.ReadOnly = true;
             this.Type.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.Type.Width = 77;
             // 
@@ -211,54 +209,52 @@
             // 
             this.A.HeaderText = "A(x;y)";
             this.A.Name = "A";
-            this.A.ReadOnly = true;
             this.A.Width = 40;
             // 
             // B
             // 
             this.B.HeaderText = "B(x;y)";
             this.B.Name = "B";
-            this.B.ReadOnly = true;
             this.B.Width = 40;
             // 
             // C
             // 
             this.C.HeaderText = "C(x;y)";
             this.C.Name = "C";
-            this.C.ReadOnly = true;
             this.C.Width = 40;
             // 
             // Area
             // 
             this.Area.HeaderText = "Area";
             this.Area.Name = "Area";
-            this.Area.ReadOnly = true;
             this.Area.Visible = false;
             // 
             // StringA
             // 
             this.StringA.HeaderText = "StringA";
             this.StringA.Name = "StringA";
-            this.StringA.ReadOnly = true;
             this.StringA.Visible = false;
             // 
             // StringB
             // 
             this.StringB.HeaderText = "StringB";
             this.StringB.Name = "StringB";
-            this.StringB.ReadOnly = true;
             this.StringB.Visible = false;
             // 
             // StringC
             // 
             this.StringC.HeaderText = "StringC";
             this.StringC.Name = "StringC";
-            this.StringC.ReadOnly = true;
             this.StringC.Visible = false;
             // 
             // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(54, 28);
+            this.textBox1.Minimum = new decimal(new int[] {
+            100,
+            0,
+            0,
+            -2147483648});
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(102, 20);
             this.textBox1.TabIndex = 1;
@@ -266,6 +262,11 @@
             // textBox2
             // 
             this.textBox2.Location = new System.Drawing.Point(162, 29);
+            this.textBox2.Minimum = new decimal(new int[] {
+            100,
+            0,
+            0,
+            -2147483648});
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(100, 20);
             this.textBox2.TabIndex = 2;
@@ -273,6 +274,11 @@
             // textBox4
             // 
             this.textBox4.Location = new System.Drawing.Point(54, 73);
+            this.textBox4.Minimum = new decimal(new int[] {
+            100,
+            0,
+            0,
+            -2147483648});
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(102, 20);
             this.textBox4.TabIndex = 3;
@@ -280,6 +286,11 @@
             // textBox3
             // 
             this.textBox3.Location = new System.Drawing.Point(162, 73);
+            this.textBox3.Minimum = new decimal(new int[] {
+            100,
+            0,
+            0,
+            -2147483648});
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(100, 20);
             this.textBox3.TabIndex = 4;
@@ -287,6 +298,11 @@
             // textBox5
             // 
             this.textBox5.Location = new System.Drawing.Point(54, 122);
+            this.textBox5.Minimum = new decimal(new int[] {
+            100,
+            0,
+            0,
+            -2147483648});
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(102, 20);
             this.textBox5.TabIndex = 5;
@@ -294,6 +310,11 @@
             // textBox6
             // 
             this.textBox6.Location = new System.Drawing.Point(162, 122);
+            this.textBox6.Minimum = new decimal(new int[] {
+            100,
+            0,
+            0,
+            -2147483648});
             this.textBox6.Name = "textBox6";
             this.textBox6.Size = new System.Drawing.Size(100, 20);
             this.textBox6.TabIndex = 6;
@@ -307,6 +328,7 @@
             this.menuStrip1.Size = new System.Drawing.Size(515, 24);
             this.menuStrip1.TabIndex = 11;
             this.menuStrip1.Text = "menuStrip1";
+            this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
             // 
             // toolStripMenuItem1
             // 
@@ -356,6 +378,7 @@
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.menuStrip1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "Form1";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

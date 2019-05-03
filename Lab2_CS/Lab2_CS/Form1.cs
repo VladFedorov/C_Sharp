@@ -7,8 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Excel = Microsoft.Office.Interop.Excel;
-using System.Data.OleDb;
+using System.IO;
+using System.Text;
 
 namespace Lab2_CS
 {
@@ -65,79 +65,65 @@ namespace Lab2_CS
 
         private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            try
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.ShowDialog();
+            string path = saveFileDialog.FileName;
+            BinaryWriter writer = new BinaryWriter(File.Open(path, FileMode.OpenOrCreate));
+            for(int i=0;i<dataGridView1.RowCount; i++)
             {
-                Microsoft.Office.Interop.Excel.Application excel = new Microsoft.Office.Interop.Excel.Application();
-                excel.Visible = true;
-                Microsoft.Office.Interop.Excel.Workbook workbook = excel.Workbooks.Add(System.Reflection.Missing.Value);
-                Microsoft.Office.Interop.Excel.Worksheet sheet1 = (Microsoft.Office.Interop.Excel.Worksheet)workbook.Sheets[1];
-                int StartCol = 1;
-                int StartRow = 1;
-                int j = 0, i = 0;
-
-                //Write Headers
-                for (j = 0; j < dataGridView1.Columns.Count; j++)
-                {
-                    Microsoft.Office.Interop.Excel.Range myRange = (Microsoft.Office.Interop.Excel.Range)sheet1.Cells[StartRow, StartCol + j];
-                    myRange.Value2 = dataGridView1.Columns[j].HeaderText;
-                }
-
-                StartRow++;
-
-                //Write datagridview content
-                for (i = 0; i < dataGridView1.Rows.Count; i++)
-                {
-                    for (j = 0; j < dataGridView1.Columns.Count; j++)
-                    {
-                        try
-                        {
-                            Microsoft.Office.Interop.Excel.Range myRange = (Microsoft.Office.Interop.Excel.Range)sheet1.Cells[StartRow + i, StartCol + j];
-                            myRange.Value2 = dataGridView1[j, i].Value == null ? "" : dataGridView1[j, i].Value;
-                        }
-                        catch
-                        {
-                            ;
-                        }
-                    }
-                }
+                for(int j=0;j<dataGridView1.ColumnCount;j++)
+                writer.Write(dataGridView1.Rows[i].Cells[j].Value.ToString());
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
+            writer.Close();
         }
+
+
+
+        Dictionary<string, string> dic = new Dictionary<string, string>();
 
         private void importToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            for(int i =0;i< dataGridView1.Rows.Count; i++)
+            using (FileStream fstr = File.Exists("1.txt") ?
+                new FileStream("1.txt", FileMode.Append) :
+                new FileStream("1.txt", FileMode.Create))
             {
-                dataGridView1.Rows.RemoveAt(i);
+                using (StreamWriter swr = new StreamWriter(fstr))
+                {
+                    swr.WriteLine(textBox1.Text + "|" + DateTime.Now.Date.ToString("d"));
+                }
             }
-            OpenFileDialog opf = new OpenFileDialog();
-            opf.Filter = "Excel (*.XLS)|*.XLS |Excel (*.XLSX)|*.XLSX";
-            opf.ShowDialog();
-            DataTable tb = new DataTable();
-            //System.Data.DataTable tb = new System.Data.DataTable();
-            string filename = opf.FileName;
 
-            Microsoft.Office.Interop.Excel.Application ExcelApp = new Microsoft.Office.Interop.Excel.Application();
-            Microsoft.Office.Interop.Excel._Workbook ExcelWorkBook;
-            Microsoft.Office.Interop.Excel.Worksheet ExcelWorkSheet;
-
-            ExcelWorkBook = ExcelApp.Workbooks.Open(filename, 0, true, 5, "", "", true, Microsoft.Office.Interop.Excel.XlPlatform.xlWindows, "\t", false,
-                false, 0, true, 1, 0);
-            ExcelWorkSheet = (Microsoft.Office.Interop.Excel.Worksheet)ExcelWorkBook.Worksheets.get_Item(1);
-            for (int i = 2; i <= ExcelApp.Rows.Count; i++)
-            {
-                if(ExcelApp.Cells[i, 1].Value != null)
-                dataGridView1.Rows.Add(ExcelApp.Cells[i, 1].Value, ExcelApp.Cells[i, 2].Value, ExcelApp.Cells[i, 3].Value, ExcelApp.Cells[i, 4].Value, ExcelApp.Cells[i, 5].Value, ExcelApp.Cells[i, 6].Value, ExcelApp.Cells[i, 7].Value, ExcelApp.Cells[i, 8].Value);
-
-                else
-                    break;
-
-            }
-            richTextBox1.Text = "Data importing finished succesful";
+            From_file_to_Collec();
+            From_Collec_to_DataGrid();
         }
+
+
+
+        private void From_file_to_Collec()
+        {
+            dic.Clear();
+
+            using (StreamReader sr = new StreamReader("1.txt"))
+            {
+                while (!sr.EndOfStream)
+                {
+                    string[] str = sr.ReadLine().Split('|');
+                    if (str[0] != "")
+                        dic.Add(str[0], str[1]);
+                }
+            }
+        }
+
+        private void From_Collec_to_DataGrid()
+        {
+            dataGridView1.Rows.Clear();
+
+            foreach (var x in dic)
+                dataGridView1.Rows.Add(x.Key, x.Value);
+        }
+
+
+
 
         private void releaseObject(object obj)
         {
@@ -157,11 +143,16 @@ namespace Lab2_CS
             }
         }
 
+        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
         private void button2_Click(object sender, EventArgs e)
         {
             tmp = Convert.ToDouble(dataGridView1.Rows[0].Cells[4].Value);
             tpm = Convert.ToDouble(dataGridView1.Rows[0].Cells[4].Value);
-            for (int i = 0; i < (dataGridView1.RowCount-1); i++)
+            for (int i = 0; i < (dataGridView1.RowCount); i++)
             {
                 if (tmp < Convert.ToDouble(dataGridView1.Rows[i].Cells[4].Value))
                 {
