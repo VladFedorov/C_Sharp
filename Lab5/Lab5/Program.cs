@@ -5,22 +5,32 @@ using System.Text;
 
 namespace Class
 {
-    public class Picture                       // описание класса Товар
+    interface IBase
     {
-        public string Name;
-        public string Author;
+        string Name { get; set; }
+        string Author { get; set; }
+    }
+
+    public class Picture:IBase
+    {
+         string name;
+         string author;
+
+        public string Name { get => name; set => name = value; }
+        public string Author { get => author; set => author = value; }
         public Picture(string name, string author)
         {
             this.Name = name;
             this.Author = author;
         }
+
         public void PrintName()
         {
-            Console.WriteLine("Name:    " + this.Name);
+            Console.WriteLine("Name:    " + this.Name +"\nAuthor:   "+this.Author);
         }
     }
 
-    public class Painting : Picture                // Описание класса Продукт
+    public class Painting : Picture
     {
         public int Price;
         public Painting(string name, string author, int price)
@@ -34,7 +44,7 @@ namespace Class
         }
     }
 
-    public class Remake : Painting        //описание класса Молочный продукт
+    public class Remake : Painting
     {
         public int Year;
         public Remake(string name,string author, int price, int year)
@@ -54,7 +64,7 @@ namespace Class
         }
     }
 
-    public class Landscape : Remake            //описание класса Игрушка
+    public class Landscape : Remake
     {
         public string strana;
         public Landscape(string name, string author, int price,int year, string strana)
